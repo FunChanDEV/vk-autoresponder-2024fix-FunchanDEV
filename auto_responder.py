@@ -70,17 +70,13 @@ class Base():
         while True:
             try:
                 self.token = input(f'\n{self.plus} Введите токен:\n')
-                if len(self.token) == 85 or len(self.token) == 198:
-                    vk = vk_api.VkApi(token=self.token)
-                    info_account = vk.method('users.get', {})
-                    fn = info_account[0]["first_name"]
-                    ln = info_account[0]["last_name"]
-                    print(f'\n{self.g}Аккаунт {fn} {ln} был успешно авторизован!{self.d}')
-                    self.authorization_token_anticaptcha()
-                    break
-                else:
-                    print(f'\n{self.exclamation_point} Ваш токен содержит {len(self.token)} символов, а должен 85.\nПоп'
-                          f'робуйте снова')
+                vk = vk_api.VkApi(token=self.token)
+                info_account = vk.method('users.get', {})
+                fn = info_account[0]["first_name"]
+                ln = info_account[0]["last_name"]
+                print(f'\n{self.g}Аккаунт {fn} {ln} был успешно авторизован!{self.d}')
+                self.authorization_token_anticaptcha()
+                break
             except:
                 print(f'\n{self.exclamation_point} Ваш токен содержит ошибку, попробуйте ввести его снова!')
 
